@@ -1,0 +1,16 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+        "no-any": false,
+        "no-consecutive-blank-lines": true,
+        "indent": [true, "tabs"],
+        "no-console": [false],
+        "semicolon": [true, "always"],
+        "trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
+        "quotemark": [true, "single", "jsx-single", "avoid-escape"]
+    }
+}

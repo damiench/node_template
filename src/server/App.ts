@@ -4,26 +4,25 @@ import * as path from 'path';
 class App {
 	public express;
 
-	constructor () {
+	constructor() {
 		this.express = express();
-		this.setupRoutes();
 		this.serveFile();
+		this.setupRoutes();
 	}
 
-	private setupRoutes (): void {
+	private setupRoutes(): void {
 		const router = express.Router();
 
-		router.get('/', (req: express.Request, res: express.Response) => {
+		router.get('*', (req: express.Request, res: express.Response) => {
 
 			res.sendFile(
-				path.join(__dirname, '/../client/index.html')
+				path.join(__dirname, '../client/index.html')
 			);
 		});
-
-		this.express.use('/', router);
+		this.express.get('*', router);
 	}
 
-	private serveFile (): void {
+	private serveFile(): void {
 
 		this.express.use(
 			express.static(

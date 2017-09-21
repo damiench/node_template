@@ -5,13 +5,15 @@
   "main": "./src/server/index.js",
   "scripts": {
     "build": "tsc",
+    "tslint": "tslint src/**/*.ts -t verbose",
+    "tslint:watch": "chokidar ./src/**/*.ts -c \"npm run tslint\" --initial",
     "compile-ts": "tsc --watch",
     "server": "node ./build/server/index.js",
     "server:watch": "nodemon ./build/server",
-    "start": "npm-run-all --parallel webpack build server",
+    "start": "npm-run-all --parallel webpack build server tslint",
     "webpack": "webpack",
     "webpack:watch": "webpack --watch",
-    "start:dev": "npm-run-all --parallel webpack:watch compile-ts server:watch"
+    "start:dev": "npm-run-all --parallel webpack:watch compile-ts tslint:watch server:watch"
   },
   "repository": {
     "type": "git",
@@ -34,14 +36,32 @@
     "@types/react": "^16.0.5",
     "@types/react-dom": "^15.5.4",
     "express": "^4.15.4",
+    "history": "^4.7.2",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.6",
+    "redux": "^3.7.2"
   },
   "devDependencies": {
+    "@types/history": "^4.6.0",
+    "@types/react-redux": "^5.0.9",
+    "@types/react-router": "^4.0.15",
+    "@types/react-router-redux": "^5.0.8",
+    "@types/redux": "^3.6.0",
+    "autoprefixer": "^7.1.4",
     "awesome-typescript-loader": "^3.2.3",
+    "chokidar-cli": "^1.2.0",
+    "css-loader": "^0.28.7",
     "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.5.3",
     "npm-run-all": "^4.1.1",
+    "sass-loader": "^6.0.6",
     "source-map-loader": "^0.2.1",
+    "style-loader": "^0.18.2",
+    "tslint": "^5.7.0",
     "typescript": "^2.5.2"
   }
 }

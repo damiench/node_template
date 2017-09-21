@@ -4,6 +4,7 @@ module.exports = {
     entry: "./src/client/index.tsx",
     output: {
         filename: "bundle.js",
+        publicPath: "/",
         path: __dirname + "/build/client"
     },
 
@@ -21,7 +22,16 @@ module.exports = {
             { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+            // All css/sass files will be bundled
+            {
+                test: /(\.css|\.scss|\.sass)$/,
+                use: [
+                    {loader: 'style-loader'},
+                    {loader: 'css-loader', options: { sourceMap: true }},
+                    {loader: 'sass-loader', options: { sourceMap: true }}
+                ]
+            }
         ]
     },
     plugins: [
