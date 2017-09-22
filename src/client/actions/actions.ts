@@ -4,5 +4,6 @@ export interface IAction {
 };
 
 export const ACTION_TYPES = {
-	'DO_SMTH': 'do smth'
+	'DO_SMTH': 'do smth',
+	'USERS_LOADED': 'load users'
 };

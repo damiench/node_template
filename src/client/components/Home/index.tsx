@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import './Home.scss';
+// import './Home.scss';
 
 export default class Home extends React.Component<any, any> {
 	render() {

@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"outDir": "./build/server",
+		"outDir": "./build",
 		"sourceMap": true,
 		"module": "commonjs",
 		"allowJs": false,
