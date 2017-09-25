@@ -8,13 +8,14 @@ class App {
 
 	constructor() {
 		this.express = express();
+		this.setViewEngine();
 		this.serveFile();
 		this.setupRoutes();
-		this.setViewEngine();
 	}
 
 	private setViewEngine(): void {
-		this.express.set('view', 'pug');
+		this.express.set('views', path.join(__dirname, '../..', 'views'));
+		this.express.set('view engine', 'pug');
 	}
 
 	private setupRoutes(): void {
