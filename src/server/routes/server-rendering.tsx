@@ -19,7 +19,6 @@ const store = createStore(combineReducers({...reducers}), applyMiddleware(thunk)
 router.get('*', (req, res) => {
 	const branch = matchRoutes(routes, req.url);
 
-	console.log('working')
 	let context = {};
 
 	const content = renderToString(

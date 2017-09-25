@@ -4,15 +4,16 @@
   "description": "Basic template of node.js with react-redux app",
   "main": "./src/server/index.js",
   "scripts": {
+    "remove-build": "rimraf ./build",
     "build": "tsc",
     "tslint": "tslint src/**/*.ts -t verbose",
     "tslint:watch": "chokidar ./src/**/*.ts -c \"npm run tslint\" --initial",
     "compile-ts": "tsc --watch",
     "server": "node ./build/server/index.js",
     "server:watch": "nodemon ./build/server",
-    "start": "npm-run-all --parallel webpack build server tslint",
-    "webpack": "webpack",
-    "webpack:watch": "webpack --watch",
+    "start": "npm run remove-build && npm run build && npm-run-all --parallel webpack  server tslint",
+    "webpack": "node ./tools/build.js",
+    "webpack:watch": "webpack-dev-server",
     "start:dev": "npm-run-all --parallel webpack:watch compile-ts tslint:watch server:watch"
   },
   "repository": {
@@ -46,7 +47,8 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "webpack": "^3.6.0"
   },
   "devDependencies": {
     "@types/history": "^4.6.0",
@@ -65,10 +67,14 @@
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.5.3",
     "npm-run-all": "^4.1.1",
+    "react-hot-loader": "^1.3.1",
+    "rimraf": "^2.6.2",
     "sass-loader": "^6.0.6",
     "source-map-loader": "^0.2.1",
     "style-loader": "^0.18.2",
     "tslint": "^5.7.0",
-    "typescript": "^2.5.2"
+    "typescript": "^2.5.2",
+    "webpack-dev-server": "^2.8.2",
+    "webpack-md5-hash": "0.0.5"
   }
 }

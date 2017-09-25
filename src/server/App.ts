@@ -19,14 +19,6 @@ class App {
 	}
 
 	private setupRoutes(): void {
-		// const router = express.Router();
-		//
-		// router.get('*', (req: express.Request, res: express.Response) => {
-		//
-		// 	res.sendFile(
-		// 		path.join(__dirname, '../client/index.html')
-		// 	);
-		// });
 		this.express.get('*', serverRoutes);
 	}
 

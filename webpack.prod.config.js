@@ -1,4 +1,5 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var WebpackMd5Hash = require('webpack-md5-hash');
 var webpack = require('webpack');
 var path = require('path');
 
@@ -12,6 +13,9 @@ module.exports = {
 
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
+
+    // Set target as browser
+    target: 'web',
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
@@ -41,17 +45,34 @@ module.exports = {
 			template: './src/client/index.html',
 			minify: {
 				removeComments: true,
-				collapseWhitespace: true
+				collapseWhitespace: true,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true
 			},
 			inject: true
 		}),
-        new webpack.HotModuleReplacementPlugin(),
-
-    ],
-    devServer: {
-        contentBase: path.join(__dirname, "./build/client"),
-        compress: true,
-        port: 9000,
-        historyApiFallback: true
-    }
+        new webpack.optimize.UglifyJsPlugin({ sourceMap: false }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production')
+            }
+        }),
+        new webpack.LoaderOptionsPlugin({
+            minimize: true,
+            debug: false,
+            noInfo: true, // set to false to see a list of every file being bundled.
+            options: {
+                sassLoader: {
+                    includePaths: [path.resolve(__dirname, 'src/client', 'scss')]
+                },
+                context: '/',
+                postcss: () => [autoprefixer],
+            }
+        }),
+        new WebpackMd5Hash()
+    ]
 };
